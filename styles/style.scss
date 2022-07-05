@@ -6,6 +6,8 @@
 
 .main {
 	@extend %flex-center;
+
+	flex-direction: column;
 }
 
 .calc {
@@ -17,6 +19,8 @@
 	margin: 20px;
 	border: 1px solid black;
 	padding: 10px;
+
+	border-radius: 10px;
 
 	&__input {
 		margin: 10px;
@@ -44,11 +48,13 @@
 .btn {
 	@extend %flex-center;
 
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 
-	margin: 1px;
+	margin: 2px;
 	border: 1px solid purple;
+
+	border-radius: 0px;
 
 	background-color: pink;
 	color: white;
@@ -68,19 +74,60 @@
 	grid-template-rows: 1fr 4fr;
 
 	border: 2px solid black;
+	padding: 10px;
+
+	border-radius: 10px;
 
 	background-color: lightpink;
 
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	font-weight: bold;
 
-	&__result {
+	&__display {
 		@extend %flex-center;
+		flex-direction: column;
 
 		background-color: white;
 
 		margin: 2px;
 		border: 1px solid black;
+
+		border-radius: 0px;
+
+		&--flags {
+			display: flex;
+			flex-direction: row;
+			justify-content: end;
+
+			width: 100%;
+		}
+
+		&--flag {
+			@extend %flex-center;
+
+			width: 20px;
+			height: 20px;
+
+			margin: 2px;
+			border: 1px solid black;
+
+			border-radius: 5px;
+
+			&-hidden {
+				display: none;
+			}
+		}
+	}
+
+	&__result {
+		@extend %flex-center;
+
+		height: 100%;
+
+		background-color: white;
+		/* border: 1px solid black; */
+
+		border-radius: 0px;
 	}
 
 	&__container {

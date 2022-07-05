@@ -27,32 +27,8 @@ function calculate(a, b) {
 			"*": a * b,
 			"/": a / b,
 			"^": a ** b,
-		}[op] ?? NaN // catch invalu
+		}[op] ?? NaN // catch invalid operators;
 	);
-	/* switch (op) {
-		// add.
-		case "+":
-			return a + b;
-			break;
-		// subtract.
-		case "-":
-			return a - b;
-			break;
-		// multiply.
-		case "*":
-			return a * b;
-			break;
-		// divide.
-		case "/":
-			return a / b;
-			break;
-		// power.
-		case "^":
-			return a ** b;
-			break;
-	}
-	console.log("invalid operator provided." + toString(op));
-	return NaN; */
 }
 
 // perform the calculation for the simple calc.

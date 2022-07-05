@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Calculator</title>
 		<link rel="stylesheet" href="../styles/style.css" />
-		<script src="../scripts/calculatorFunctional.js"></script>
+		<script src="../scripts/calculatorFunctional.js" defer></script>
+		<script src="../scripts/calculator.js" defer></script>
 	</head>
 	<body class="main">
 		<section class="simpleCalc">
@@ -47,33 +48,98 @@
 				<p class="calc__output" id="sOut">3</p>
 			</form>
 		</section>
+
+		<h2>Advanced Calculator</h2>
 		<section class="calculator">
-			<p class="calculator__result" id="aResult">1234567890</p>
+			<div class="calculator__display">
+				<p class="calculator__result" id="aResult">1234567890</p>
+
+				<div class="calculator__display--flags">
+					<div
+						class="calculator__display--flag calculator__display--flag-hidden"
+						id="aMemory"
+					>
+						M
+					</div>
+					<div class="calculator__display--flag" id="aOperator">
+						=
+					</div>
+				</div>
+			</div>
+
 			<main class="calculator__container">
-				<div class="btn btn--function">MR</div>
-				<div class="btn btn--function">M+</div>
-				<div class="btn btn--function">C</div>
-				<div class="btn btn--function">+</div>
+				<div class="btn btn--function" onclick="calc.memoryRecall();">
+					MR
+				</div>
+				<div class="btn btn--function" onclick="calc.memoryClear();">
+					MC
+				</div>
+				<div class="btn btn--function" onclick="calc.memoryAdd();">
+					M+
+				</div>
+				<div class="btn btn--function" onclick="calc.memorySub();">
+					M-
+				</div>
 
-				<div class="btn">1</div>
-				<div class="btn">2</div>
-				<div class="btn">3</div>
-				<div class="btn btn--function">-</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('^2'); calc.changeOperator('=');"
+				>
+					SQR
+				</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('^');"
+				>
+					POW
+				</div>
+				<div class="btn btn--function" onclick="calc.clear()">C</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('+')"
+				>
+					+
+				</div>
 
-				<div class="btn">4</div>
-				<div class="btn">5</div>
-				<div class="btn">6</div>
-				<div class="btn btn--function">*</div>
+				<div class="btn" onclick="calc.pushValue('1');">1</div>
+				<div class="btn" onclick="calc.pushValue('2');">2</div>
+				<div class="btn" onclick="calc.pushValue('3');">3</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('-')"
+				>
+					-
+				</div>
 
-				<div class="btn">7</div>
-				<div class="btn">8</div>
-				<div class="btn">9</div>
-				<div class="btn btn--function">/</div>
+				<div class="btn" onclick="calc.pushValue('4');">4</div>
+				<div class="btn" onclick="calc.pushValue('5');">5</div>
+				<div class="btn" onclick="calc.pushValue('6');">6</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('*')"
+				>
+					*
+				</div>
 
-				<div class="btn">+/-</div>
-				<div class="btn">0</div>
-				<div class="btn">.</div>
-				<div class="btn btn--function">=</div>
+				<div class="btn" onclick="calc.pushValue('7');">7</div>
+				<div class="btn" onclick="calc.pushValue('8');">8</div>
+				<div class="btn" onclick="calc.pushValue('9');">9</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('/')"
+				>
+					/
+				</div>
+
+				<div class="btn" onclick="calc.invertBuffer();">+/-</div>
+				<div class="btn" onclick="calc.pushValue('0');">0</div>
+				<div class="btn" onclick="calc.pushValue('.');">.</div>
+				<div
+					class="btn btn--function"
+					onclick="calc.changeOperator('=')"
+				>
+					=
+				</div>
 			</main>
 		</section>
 	</body>

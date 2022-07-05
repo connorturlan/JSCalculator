@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Calculator</title>
+		<link rel="stylesheet" href="../styles/style.css" />
+		<script src="../scripts/calculatorFunctional.js"></script>
+	</head>
+	<body class="main">
+		<section class="simpleCalc">
+			<h2>Simple Calculator</h2>
+			<form class="calc" onsubmit="return false;">
+				<input
+					class="calc__input"
+					type="text"
+					name="a"
+					id="sA"
+					placeholder="1"
+				/>
+
+				<select class="calc__input" name="op" id="sOp">
+					<option value="+">add</option>
+					<option value="-">sub</option>
+					<option value="*">mul</option>
+					<option value="/">div</option>
+					<option value="^">pow</option>
+				</select>
+
+				<input
+					class="calc__input"
+					type="text"
+					name="b"
+					id="sB"
+					placeholder="2"
+				/>
+
+				<input
+					class="calc__btn"
+					type="submit"
+					value="="
+					onclick="simpleCalculate()"
+				/>
+				<input class="calc__btn" type="reset" value="C" />
+
+				<p class="calc__output" id="sOut">3</p>
+			</form>
+		</section>
+		<section class="calculator">
+			<p class="calculator__result" id="aResult">1234567890</p>
+			<main class="calculator__container">
+				<div class="btn btn--function">MR</div>
+				<div class="btn btn--function">M+</div>
+				<div class="btn btn--function">C</div>
+				<div class="btn btn--function">+</div>
+
+				<div class="btn">1</div>
+				<div class="btn">2</div>
+				<div class="btn">3</div>
+				<div class="btn btn--function">-</div>
+
+				<div class="btn">4</div>
+				<div class="btn">5</div>
+				<div class="btn">6</div>
+				<div class="btn btn--function">*</div>
+
+				<div class="btn">7</div>
+				<div class="btn">8</div>
+				<div class="btn">9</div>
+				<div class="btn btn--function">/</div>
+
+				<div class="btn">+/-</div>
+				<div class="btn">0</div>
+				<div class="btn">.</div>
+				<div class="btn btn--function">=</div>
+			</main>
+		</section>
+	</body>
+</html>

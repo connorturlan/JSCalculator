@@ -27,7 +27,7 @@ class Calculator {
 
 	calculate() {
 		// convert the buffer to an int.
-		let b = parseInt(this.buffer);
+		let b = parseFloat(this.buffer);
 
 		// parse the operator.
 		this.result =

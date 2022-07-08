@@ -15,11 +15,12 @@ class Calculator {
 	// push a value to the end of the line.
 	pushValue(value) {
 		// check that only one decimal is being added.
-		if (true) {
+		if (value == "." && (this.buffer.match(/(\.)/g) || []).length >= 1) {
+			value = "";
 		}
 
+		// push the character to the buffer and show.
 		this.buffer += value;
-
 		this.showBuffer();
 	}
 

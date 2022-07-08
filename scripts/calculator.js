@@ -14,6 +14,10 @@ class Calculator {
 
 	// push a value to the end of the line.
 	pushValue(value) {
+		// check that only one decimal is being added.
+		if (true) {
+		}
+
 		this.buffer += value;
 
 		this.showBuffer();

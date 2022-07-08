@@ -10,48 +10,6 @@
 		<script src="../scripts/calculator.js" defer></script>
 	</head>
 	<body class="main">
-		<!-- simple calculator to test out the logic. -->
-		<section class="simpleCalc" hidden>
-			<h2>Simple Calculator</h2>
-			<form class="calc" onsubmit="return false;">
-				<input
-					class="calc__input"
-					type="text"
-					name="a"
-					id="sA"
-					placeholder="1"
-				/>
-
-				<select class="calc__input" name="op" id="sOp">
-					<option value="+">add</option>
-					<option value="-">sub</option>
-					<option value="*">mul</option>
-					<option value="/">div</option>
-					<option value="^">pow</option>
-				</select>
-
-				<input
-					class="calc__input"
-					type="text"
-					name="b"
-					id="sB"
-					placeholder="2"
-				/>
-
-				<input
-					class="calc__btn"
-					type="submit"
-					value="="
-					onclick="simpleCalculate()"
-				/>
-				<input class="calc__btn" type="reset" value="C" />
-
-				<p class="calc__output" id="sOut">3</p>
-			</form>
-		</section>
-
-		<!-- advanced calculator with a more recognisable appearance. -->
-		<h2>Advanced Calculator</h2>
 		<section class="calculator">
 			<div class="calculator__display">
 				<p class="calculator__result" id="aResult">1234567890</p>

@@ -75,7 +75,7 @@
   height: 100%;
   /* border: 1px solid black; */
   border-radius: 0px;
-  align-items: center;
+  font-size: 24px;
 }
 .calculator__container {
   display: grid;

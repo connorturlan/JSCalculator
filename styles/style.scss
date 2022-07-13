@@ -10,12 +10,20 @@ $colour__btns--function: orange;
 
 .main {
 	@extend %flex-center;
-	flex-direction: column;
+	/* flex-direction: column; */
 
 	margin: 0px;
 	padding: 0px;
 
 	height: 100vh;
+}
+
+.btn--back {
+	width: 100px;
+	height: 50px;
+
+	margin: 20px;
+	margin-bottom: auto;
 }
 
 .btn {

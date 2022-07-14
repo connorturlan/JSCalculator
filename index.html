@@ -13,7 +13,7 @@
 		<button class="btn--back" onclick="history.back()">Go Back</button>
 
 		<section class="calculator">
-			<div class="calculator__display">
+			<div class="calculator__display" id="aDisplay">
 				<p class="calculator__result" id="aResult">1234567890</p>
 
 				<div class="calculator__display--flags">
@@ -27,6 +27,17 @@
 						=
 					</div>
 				</div>
+			</div>
+
+			<div
+				class="btn calculator__power--btn"
+				id="aPower"
+				onclick="calc.togglePower()"
+			>
+				<img
+					class="calculator__power"
+					src="https://upload.wikimedia.org/wikipedia/commons/b/b2/IEC5009_Standby_Symbol.svg"
+				/>
 			</div>
 
 			<main class="calculator__container">

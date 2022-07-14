@@ -36,7 +36,7 @@ $colour__btns--function: orange;
 
 	border-radius: 10px;
 	background: #d3d3d3;
-	box-shadow: 6px 6px 12px #b3b3b3, -6px -6px 12px #f3f3f3;
+	box-shadow: 4px 4px 8px #b3b3b3, -4px -4px 8px #f3f3f3;
 
 	&:hover {
 		background: #8a8a8a;
@@ -58,7 +58,8 @@ $colour__btns--function: orange;
 
 .calculator {
 	display: grid;
-	grid-template-rows: 200px 4fr;
+	grid-template-rows: 200px 30px 4fr;
+	justify-content: center;
 
 	/* padding: 20px; */
 
@@ -107,6 +108,15 @@ $colour__btns--function: orange;
 				display: none;
 			}
 		}
+
+		&--off {
+			background-color: #222222;
+			box-shadow: inset 5px 5px 10px #131313, inset -5px -5px 10px #313131;
+
+			& * {
+				display: none;
+			}
+		}
 	}
 
 	&__result {
@@ -126,5 +136,20 @@ $colour__btns--function: orange;
 		grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
 
 		margin: 10px;
+	}
+
+	&__power {
+		width: 80%;
+		height: 80%;
+
+		&--btn {
+			width: 90%;
+			height: 20px;
+
+			margin: 12px;
+
+			justify-self: center;
+			/* align-self: flex-start; */
+		}
 	}
 }

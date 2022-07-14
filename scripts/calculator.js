@@ -1,5 +1,11 @@
 class Calculator {
-	constructor() {
+	constructor(isPowered = false) {
+		this.isPowered = isPowered;
+		if (!this.isPowered)
+			document
+				.getElementById("aDisplay")
+				.classList.add("calculator__display--off");
+
 		this.result = 0; // value to display after result is shown.
 
 		this.buffer = ""; // working input.
@@ -14,6 +20,9 @@ class Calculator {
 
 	// push a value to the end of the line.
 	pushValue(value) {
+		// validate power.
+		if (!this.isPowered) return;
+
 		// check that only one decimal is being added.
 		if (value == "." && (this.buffer.match(/(\.)/g) || []).length >= 1) {
 			value = "";
@@ -25,8 +34,10 @@ class Calculator {
 	}
 
 	setOperator(op) {
-		this.operator = op;
+		// validate power.
+		if (!this.isPowered) return;
 
+		this.operator = op;
 		document.getElementById("aOperator").innerText = op;
 	}
 
@@ -52,6 +63,9 @@ class Calculator {
 
 	// perform the buffered operation then change the operator.
 	changeOperator(op) {
+		// validate power.
+		if (!this.isPowered) return;
+
 		// calculate the result.
 		this.calculate();
 
@@ -67,6 +81,9 @@ class Calculator {
 
 	// clear all unstored values.
 	clear() {
+		// validate power.
+		if (!this.isPowered) return;
+
 		// clear the buffer first.
 		if (this.buffer !== "") {
 			this.buffer = "";
@@ -74,7 +91,7 @@ class Calculator {
 		// then clear the results and reset the operator.
 		else {
 			this.result = 0;
-			this.operator = "+";
+			this.operator = "=";
 		}
 
 		// push the cleared buffer to the screen.
@@ -83,6 +100,9 @@ class Calculator {
 
 	// invert the value in the buffer.
 	invertBuffer() {
+		// validate power.
+		if (!this.isPowered) return;
+
 		this.buffer = this.buffer.startsWith("-")
 			? this.buffer.substring(1, this.buffer.length)
 			: "-" + this.buffer;
@@ -90,10 +110,23 @@ class Calculator {
 		this.showBuffer();
 	}
 
+	reset() {
+		this.result = 0;
+		this.buffer = "";
+		this.memory = 0;
+
+		this.operator = "=";
+
+		this.showResult();
+	}
+
 	// MEMORY FUNCTIONS
 
 	// set the buffer to the value in memory.
 	memoryRecall() {
+		// validate power.
+		if (!this.isPowered) return;
+
 		this.buffer = this.memory.toString();
 		this.setOperator("=");
 
@@ -102,6 +135,9 @@ class Calculator {
 
 	// set the memory to the value of result.
 	memoryStore(val = this.result) {
+		// validate power.
+		if (!this.isPowered) return;
+
 		this.memory = val;
 
 		document
@@ -121,9 +157,12 @@ class Calculator {
 
 	// clear the value stored in memory.
 	memoryClear() {
+		// validate power.
+		if (!this.isPowered) return;
+
 		this.memory = 0;
 
-		this.memoryRecall();
+		/* this.memoryRecall(); */
 
 		document
 			.getElementById("aMemory")
@@ -142,6 +181,20 @@ class Calculator {
 		// if the buffer is empty, show '0' instead.
 		document.getElementById("aResult").innerText =
 			this.buffer.toString() || "0";
+	}
+
+	// toggle the display when the power button is pressed.
+	togglePower() {
+		// toggle the display.
+		let display = document.getElementById("aDisplay");
+		display.classList.toggle("calculator__display--off");
+		this.isPowered = !display.classList.contains(
+			"calculator__display--off"
+		);
+
+		// clear memory.
+		this.reset();
+		this.memoryClear();
 	}
 }
 

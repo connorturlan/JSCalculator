@@ -106,12 +106,14 @@ class Calculator {
 		}
 
 		// check that only one decimal is being added.
-		if (value == "." && (/\./.test(this.buffer) || []).length >= 1) {
+		if (value == "." && /\./.test(this.buffer)) {
 			value = "";
 		}
 
 		// push the character to the buffer and show.
-		this.buffer += value;
+		if (this.buffer.length < 16) {
+			this.buffer += value;
+		}
 		this.showBuffer();
 	}
 
@@ -140,6 +142,14 @@ class Calculator {
 				"^2": this.result ** 2,
 				"^": this.result ** b,
 			}[this.operator] ?? NaN; // catch invalid operators.
+
+		// catch really bad errors.
+		if (
+			this.result >= Number.MAX_SAFE_INTEGER ||
+			this.result <= Number.MIN_SAFE_INTEGER
+		) {
+			this.result = NaN;
+		}
 
 		// display the result to the user.
 		this.showResult();
@@ -256,16 +266,21 @@ class Calculator {
 
 	// DISPLAY FUNCTIONS
 
+	// update the display with a given number string and format with commas.
+	updateDisplay(string) {
+		document.getElementById("aResult").innerText =
+			parseFloat(string).toLocaleString();
+	}
+
 	// show the results to the display.
 	showResult() {
-		document.getElementById("aResult").innerText = this.result.toString();
+		this.updateDisplay(this.result.toString());
 	}
 
 	// show the buffer to the display.
 	showBuffer() {
 		// if the buffer is empty, show '0' instead.
-		document.getElementById("aResult").innerText =
-			this.buffer.toString() || "0";
+		this.updateDisplay(this.buffer.toString() || "0");
 	}
 
 	// toggle the display when the power button is pressed.

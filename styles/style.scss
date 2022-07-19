@@ -84,6 +84,8 @@ $colour__btns--function: orange;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	font-weight: bold;
 
+	user-select: none;
+
 	&__display {
 		@extend %flex-center;
 		flex-direction: column;

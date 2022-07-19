@@ -120,7 +120,6 @@ class Calculator {
 	setOperator(operator) {
 		// validate power.
 		if (!this.isPowered) return;
-
 		if (operator !== "=") {
 			this.operator = operator;
 			document.getElementById("aOperator").innerText = operator;
@@ -140,7 +139,7 @@ class Calculator {
 				"*": this.result * b,
 				"/": this.result / b,
 				"^2": this.result ** 2,
-				"^": this.result ** b,
+				"^": b ** this.result,
 			}[this.operator] ?? NaN; // catch invalid operators.
 
 		// catch really bad errors.
@@ -148,7 +147,12 @@ class Calculator {
 			this.result >= Number.MAX_SAFE_INTEGER ||
 			this.result <= Number.MIN_SAFE_INTEGER
 		) {
-			this.result = NaN;
+			this.updateDisplay("value error");
+
+			this.buffer = "";
+			this.result = 0;
+
+			return;
 		}
 
 		// display the result to the user.
@@ -166,7 +170,7 @@ class Calculator {
 		// change the operator and reset the buffer.
 		this.setOperator(operator);
 		this.bufferPendingReset = true;
-		//this.buffer = "";
+		this.buffer = "";
 
 		// show the result to the display.
 		this.showResult();
@@ -293,6 +297,8 @@ class Calculator {
 		);
 
 		// clear memory.
+		this.setOperator("=");
+		document.getElementById("aOperator").innerText = "=";
 		this.reset();
 		this.memoryClear();
 	}

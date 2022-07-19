@@ -24,34 +24,18 @@ class Calculator {
 
 	// bind the calculator's functions to the DOM.
 	bind() {
-		// create an object to map the button functions
+		// create an object to map the unique button functions
 		const functions = {
 			mr: () => this.memoryRecall(),
 			mc: () => this.memoryClear(),
 			"m+": () => this.memoryAdd(),
 			"m-": () => this.memorySub(),
-			c: () => this.clear(),
+			ac: () => this.clear(),
 			pow: () => {
-				this.changeOperator("^");
+				this.changeOperator("pow");
 			},
 			sqr: () => {
-				this.changeOperator("^2");
-				this.changeOperator("=");
-			},
-			"+": () => {
-				this.changeOperator("+");
-			},
-			"-": () => {
-				this.changeOperator("-");
-			},
-			"*": () => {
-				this.changeOperator("*");
-			},
-			"/": () => {
-				this.changeOperator("/");
-			},
-			"=": () => {
-				this.changeOperator("=");
+				this.changeOperator("sqr");
 			},
 			"+/-": () => {
 				this.invertBuffer();
@@ -76,6 +60,12 @@ class Calculator {
 			// if the button label is a registered function, push that operator.
 			if (buttonLabel in functions) {
 				btn.addEventListener("click", functions[buttonLabel]);
+			}
+			// if the button label is a simple function, add the change op function.
+			else if (/(^[+\-*/=]$)/.test(buttonLabel)) {
+				btn.addEventListener("click", () =>
+					this.changeOperator(buttonLabel)
+				);
 			}
 			// otherwise it is a value pushing button, use that.
 			else if (/([0-9.])/g.test(buttonLabel)) {
@@ -103,6 +93,7 @@ class Calculator {
 		if (this.bufferPendingReset) {
 			this.buffer = "";
 			this.bufferPendingReset = false;
+			this.setOperator("=", true);
 		}
 
 		// check that only one decimal is being added.
@@ -117,10 +108,10 @@ class Calculator {
 		this.showBuffer();
 	}
 
-	setOperator(operator) {
+	setOperator(operator, forced = false) {
 		// validate power.
 		if (!this.isPowered) return;
-		if (operator !== "=") {
+		if (operator !== "=" || forced) {
 			this.operator = operator;
 			document.getElementById("aOperator").innerText = operator;
 		}
@@ -138,8 +129,8 @@ class Calculator {
 				"-": this.result - b,
 				"*": this.result * b,
 				"/": this.result / b,
-				"^2": this.result ** 2,
-				"^": b ** this.result,
+				sqr: this.result ** 2,
+				pow: this.result ** b,
 			}[this.operator] ?? NaN; // catch invalid operators.
 
 		// catch really bad errors.
@@ -169,8 +160,8 @@ class Calculator {
 
 		// change the operator and reset the buffer.
 		this.setOperator(operator);
-		this.bufferPendingReset = true;
-		this.buffer = "";
+		if (operator === "=") this.bufferPendingReset = true;
+		else this.buffer = "";
 
 		// show the result to the display.
 		this.showResult();
@@ -186,11 +177,12 @@ class Calculator {
 		// clear the buffer first.
 		if (this.buffer !== "") {
 			this.buffer = "";
+			console.log("clear screen.");
 		}
 		// then clear the results and reset the operator.
 		else {
 			this.result = 0;
-			this.operator = "=";
+			this.setOperator("=", true);
 		}
 
 		// push the cleared buffer to the screen.
@@ -274,6 +266,10 @@ class Calculator {
 	updateDisplay(string) {
 		document.getElementById("aResult").innerText =
 			parseFloat(string).toLocaleString();
+
+		document.getElementById("calcReset").innerText = this.buffer
+			? "CE"
+			: "AC";
 	}
 
 	// show the results to the display.
@@ -304,4 +300,4 @@ class Calculator {
 	}
 }
 
-let calc = new Calculator();
+let calc = new Calculator(true);

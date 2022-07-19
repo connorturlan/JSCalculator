@@ -58,6 +58,11 @@ class Calculator {
 			},
 		};
 
+		// add the power button's method.
+		document.getElementById("aPower").addEventListener("click", () => {
+			this.togglePower();
+		});
+
 		// fetch the buttons.
 		const buttons = Array.from(
 			document.querySelectorAll(".calculator__buttons > .btn")

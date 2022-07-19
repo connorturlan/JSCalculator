@@ -145,9 +145,9 @@ $colour__btns--function: orange;
 		font-size: 24px;
 	}
 
-	&__container {
+	&__buttons {
 		display: grid;
-		grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+		grid-template: repeat(4, 1fr) / repeat(4, 1fr);
 
 		margin: 10px;
 	}

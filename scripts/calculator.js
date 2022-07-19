@@ -9,11 +9,82 @@ class Calculator {
 		this.result = 0; // value to display after result is shown.
 
 		this.buffer = ""; // working input.
+		this.bufferPendingReset = false;
 		this.memory = 0; // saved result.
 
 		this.operator = "=";
 
 		this.showResult();
+
+		// setup the calculator in the dom.
+		this.bind();
+	}
+
+	// DOM FUNCTIONS
+
+	// bind the calculator's functions to the DOM.
+	bind() {
+		// create an object to map the button functions
+		const functions = {
+			mr: () => this.memoryRecall(),
+			mc: () => this.memoryClear(),
+			"m+": () => this.memoryAdd(),
+			"m-": () => this.memorySub(),
+			c: () => this.clear(),
+			pow: () => {
+				this.changeOperator("^");
+			},
+			sqr: () => {
+				this.changeOperator("^2");
+				this.changeOperator("=");
+			},
+			"+": () => {
+				this.changeOperator("+");
+			},
+			"-": () => {
+				this.changeOperator("-");
+			},
+			"*": () => {
+				this.changeOperator("*");
+			},
+			"/": () => {
+				this.changeOperator("/");
+			},
+			"=": () => {
+				this.changeOperator("=");
+			},
+			"+/-": () => {
+				this.invertBuffer();
+			},
+		};
+
+		// fetch the buttons.
+		const buttons = Array.from(
+			document.querySelectorAll(".calculator__buttons > .btn")
+		);
+
+		// map the event functions.
+		buttons.map((btn, index) => {
+			// get the button's label.
+			let buttonLabel = btn.innerText.toLowerCase();
+
+			// if the button label is a registered function, push that operator.
+			if (buttonLabel in functions) {
+				btn.addEventListener("click", functions[buttonLabel]);
+			}
+			// otherwise it is a value pushing button, use that.
+			else if (/([0-9.])/g.test(buttonLabel)) {
+				btn.addEventListener("click", () =>
+					this.pushValue(buttonLabel)
+				);
+			}
+			// log when we have an unexpected button value.
+			else {
+				console.log(`unexpected button value: ${buttonLabel}.`);
+			}
+
+			return btn;
+		});
 	}
 
 	// CALCULATION OPERATIONS
@@ -23,8 +94,14 @@ class Calculator {
 		// validate power.
 		if (!this.isPowered) return;
 
+		// check if the buffer is awaiting a reset.
+		if (this.bufferPendingReset) {
+			this.buffer = "";
+			this.bufferPendingReset = false;
+		}
+
 		// check that only one decimal is being added.
-		if (value == "." && (this.buffer.test(/(\.)/g) || []).length >= 1) {
+		if (value == "." && (/\./.test(this.buffer) || []).length >= 1) {
 			value = "";
 		}
 
@@ -33,12 +110,14 @@ class Calculator {
 		this.showBuffer();
 	}
 
-	setOperator(op) {
+	setOperator(operator) {
 		// validate power.
 		if (!this.isPowered) return;
 
-		this.operator = op;
-		document.getElementById("aOperator").innerText = op;
+		if (operator !== "=") {
+			this.operator = operator;
+			document.getElementById("aOperator").innerText = operator;
+		}
 	}
 
 	calculate() {
@@ -62,7 +141,7 @@ class Calculator {
 	}
 
 	// perform the buffered operation then change the operator.
-	changeOperator(op) {
+	changeOperator(operator) {
 		// validate power.
 		if (!this.isPowered) return;
 
@@ -70,8 +149,9 @@ class Calculator {
 		this.calculate();
 
 		// change the operator and reset the buffer.
-		this.setOperator(op);
-		this.buffer = "";
+		this.setOperator(operator);
+		this.bufferPendingReset = true;
+		//this.buffer = "";
 
 		// show the result to the display.
 		this.showResult();
@@ -134,11 +214,11 @@ class Calculator {
 	}
 
 	// set the memory to the value of result.
-	memoryStore(val = this.result) {
+	memoryStore(value = this.result) {
 		// validate power.
 		if (!this.isPowered) return;
 
-		this.memory = val;
+		this.memory = value;
 
 		document
 			.getElementById("aMemory")

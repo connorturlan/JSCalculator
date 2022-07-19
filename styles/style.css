@@ -101,9 +101,9 @@
   border-radius: 0px;
   font-size: 24px;
 }
-.calculator__container {
+.calculator__buttons {
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr/1fr 1fr 1fr 1fr;
+  grid-template: repeat(4, 1fr)/repeat(4, 1fr);
   margin: 10px;
 }
 .calculator__power {

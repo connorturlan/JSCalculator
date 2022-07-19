@@ -160,8 +160,12 @@ class Calculator {
 
 		// change the operator and reset the buffer.
 		this.setOperator(operator);
-		if (operator === "=") this.bufferPendingReset = true;
-		else this.buffer = "";
+		if (operator === "=") {
+			this.bufferPendingReset = true;
+		} else {
+			this.bufferPendingReset = false;
+			this.buffer = "";
+		}
 
 		// show the result to the display.
 		this.showResult();

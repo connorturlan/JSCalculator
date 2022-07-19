@@ -18,12 +18,26 @@ $colour__btns--function: orange;
 	height: 100vh;
 }
 
-.btn--back {
-	width: 100px;
-	height: 50px;
+.return-button {
+	@extend %flex-center;
 
-	margin: 20px;
-	margin-bottom: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 30px;
+
+	margin: 0px;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: white;
+
+	background-color: orange;
+
+	&:hover {
+		background-color: rgb(255, 194, 81);
+	}
 }
 
 .btn {

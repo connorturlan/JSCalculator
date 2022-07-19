@@ -24,7 +24,7 @@ class Calculator {
 		if (!this.isPowered) return;
 
 		// check that only one decimal is being added.
-		if (value == "." && (this.buffer.match(/(\.)/g) || []).length >= 1) {
+		if (value == "." && (this.buffer.test(/(\.)/g) || []).length >= 1) {
 			value = "";
 		}
 

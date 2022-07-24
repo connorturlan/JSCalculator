@@ -156,7 +156,9 @@ class Calculator {
 		if (!this.isPowered) return;
 
 		// calculate the result.
-		this.calculate();
+		if (operator === "=" || !this.bufferPendingReset) {
+			this.calculate();
+		}
 
 		// change the operator and reset the buffer.
 		this.setOperator(operator);

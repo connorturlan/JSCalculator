@@ -14,9 +14,7 @@ However, this application can also run as is, openning the index.html file in yo
 
 Create a calculator to be rendered to the html page
 
-1. it should have number keys from 0 to 9const scope3 = () => {
-   const scope3Var = "123";
-   }
+1. it should have number keys from 0 to 9
 2. It should have operator keys (+, -, /, \*, =)
 3. It should have a display rendering the current calculation in a box at the top
 4. It should also have a “.” key
@@ -31,9 +29,9 @@ The main goal of this project was to create a calculator that was visually simil
 
 Including all the functions outlined in the original MVP, I also wanted to include a memory function to increase the usefulness of the calculator. This included:
 
--   Memory add and subtract buttons - to modify the memory.
--   Memory recall - to return the value stored in memory.
--   Memory clear - the reset the calculator's memory.
+-   add and subtract buttons - to modify the memory.
+-   recall - to return the value stored in memory.
+-   clear - the reset the calculator's memory.
 
 Beyond the original scope, additional functions added were:
 
@@ -54,7 +52,8 @@ Beyond the original scope, additional functions added were:
     -   What? Why? How?
 
 If I was to do this project again in the future, some change to make would be:
--   Make the class more modular, allow it to be bound and create a 
+
+-   Make the class more modular, allow it to be bound and create a
 
 -   What did you struggle with?
 

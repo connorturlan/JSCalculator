@@ -47,16 +47,25 @@ The main goal of this project was to create a calculator that was visually simil
 
     -   What? Why? How?
 
--   Things I'd differently next time
+## Known Issues
 
+-   Adding trailing zeroes after a decimal point will not render to the screen.
+    -   Caused by how commas are inserted for groups of thousands.
+        -   Potentially fix with bespoke function?
+
+## Retrospective
+
+-   Things I'd differently next time
     -   What? Why? How?
+
+-   What did you struggle with?
+    -   What? Why? How?
+
+## Future Plans
 
 -   Future goals / changes
 
--   Changelog (very optional)
--   What did you struggle with?
-
-    -   What? Why? How?
+## Contributions
 
 -   Licensing Details
 

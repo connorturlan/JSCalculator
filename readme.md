@@ -54,10 +54,6 @@ If I was to do this project again in the future, some change to make could be:
 -   Add history/scratchpad for previous calculations
 -   Make the design responsive for use on smaller mobiles, and add landscape viewing.
 
--   What did you struggle with?
-
-    -   What? Why? How?
-
 ## Future Plans
 
 -   Fixing issue with trailing zeroes not showing in decimals.

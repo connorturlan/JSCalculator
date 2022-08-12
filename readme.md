@@ -36,7 +36,7 @@ Including all the functions outlined in the original MVP, I also wanted to inclu
 Beyond the original scope, additional functions added were:
 
 -   A power button to toggle the screen, and all memory state in the calculator.
--   Power of, and Square functions.
+-   Power of, square, and square root functions.
 -   Adding comma formatting to groups of three digits. e.g. 1,234
 
 ## Known Issues
@@ -47,13 +47,12 @@ Beyond the original scope, additional functions added were:
 
 ## Retrospective
 
--   Things I'd differently next time
+If I was to do this project again in the future, some change to make could be:
 
-    -   What? Why? How?
-
-If I was to do this project again in the future, some change to make would be:
-
--   Make the class more modular, allow it to be bound and create a
+-   Allow it to be bound to an arbitrary parent element in the DOM, and have it generate all buttons inside the parent - perhaps a component in react.
+-   Add a button to show/hide advanced functions such as log, e^x, cube root.
+-   Add history/scratchpad for previous calculations
+-   Make the design responsive for use on smaller mobiles, and add landscape viewing.
 
 -   What did you struggle with?
 
@@ -61,12 +60,10 @@ If I was to do this project again in the future, some change to make would be:
 
 ## Future Plans
 
--   Future goals / changes
+-   Fixing issue with trailing zeroes not showing in decimals.
 
 ## Contributions
 
 -   Licensing Details
 
 -   Contribution
-
--   Further details, related projects, reimplementations

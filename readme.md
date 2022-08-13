@@ -58,8 +58,10 @@ If I was to do this project again in the future, some change to make could be:
 
 -   Fixing issue with trailing zeroes not showing in decimals.
 
+## License
+
+No license required.
+
 ## Contributions
 
--   Licensing Details
-
--   Contribution
+Made by Connor Turlan 2022.
